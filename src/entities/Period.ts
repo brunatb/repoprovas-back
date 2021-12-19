@@ -5,6 +5,6 @@ export default class Period{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     name: string;
 }
