@@ -17,7 +17,19 @@ async function getProfessorById(id: string) {
 
     return professor;
 }
+
+async function getIdProfessorByName(name: string) {
+    const professor = await getRepository(Professor).find({
+        where: {
+            name
+        }
+    });
+
+    return professor[0].id;
+}
+
 export {
     getAllProfessorsSubjects,
     getProfessorById,
+    getIdProfessorByName
 }

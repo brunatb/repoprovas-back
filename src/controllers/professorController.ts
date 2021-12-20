@@ -13,7 +13,7 @@ async function getAllProfessors(req: Request, res: Response) {
 }
 
 
-async function getProfessor (req: Request, res: Response) {
+async function getProfessor(req: Request, res: Response) {
   try {
     const teacher = await professorService.getProfessorById(req.params.id);  
     console.log(teacher);
