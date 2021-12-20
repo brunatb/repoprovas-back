@@ -11,8 +11,12 @@ export default class Test {
     @Column()
     name: string;
 
-    @Column()
-    pdf_link: string;
+    @Column({ name: 'pdf_link'})
+    pdfLink: string;
+
+    @ManyToOne(() =>  Category, category => category.test, { eager: true })
+    @JoinColumn({ name: 'category_id' })
+    category: Category;
 
     @ManyToOne(() => Subject, subject => subject.test, { eager: true })
     @JoinColumn({ name: 'subject_id' })
@@ -22,10 +26,6 @@ export default class Test {
     @JoinColumn({ name: 'professor_id' })
     professor: Professor;
 
-    @ManyToOne(() =>  Category, category => category.test, { eager: true })
-    @JoinColumn({ name: 'category_id' })
-    category: Category;
-
     getTest() {
     return {
       id: this.id,
@@ -33,7 +33,7 @@ export default class Test {
       category: this.category.name,
       subject: this.subject.name,
       professor: this.professor.name,
-      pdfLink: this.pdf_link,
+      pdfLink: this.pdfLink,
     }
   }
 }

@@ -13,7 +13,7 @@ async function getAllProfessors(req: Request, res: Response) {
 
 async function getProfessor(req: Request, res: Response) {
   try {
-    const professor = await professorService.getProfessorById(req.params.id);  
+    const professor = await professorService.getProfessorById(Number(req.params.id));  
     res.send(professor);
   } catch (err) {
     console.error(err);
