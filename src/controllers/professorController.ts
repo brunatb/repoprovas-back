@@ -3,7 +3,7 @@ import * as professorService from '../services/professorService';
 
 async function getAllProfessors(req: Request, res: Response) {
     try {
-        const data = await professorService.getAllProfessorsSubjects();
+        const data = await professorService.getAllProfessors();
         res.send(data)
     }catch (err) {
         console.error(err);
