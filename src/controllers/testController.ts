@@ -22,6 +22,18 @@ async function storeTest(req:  Request, res: Response) {
     }
 }
 
+async function getTestProfessor(req:  Request, res: Response) {
+  try {
+    const teacher = await testService.getTestByProfessorId(req.params.id);
+    console.log(teacher);
+    res.send(teacher);
+  }catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+}
+
 export {
     storeTest,
+    getTestProfessor
 }

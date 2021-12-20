@@ -12,7 +12,7 @@ async function getIdCategoryByName(name: string) {
     return category[0].id;
 }
 
-async function getCategoryById(id: string) {
+async function getCategoryById(id: number) {
     const category = await getRepository(Category).find({
         where: {
             id

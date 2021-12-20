@@ -21,7 +21,19 @@ async function getPeriodFromId(id:number){
     return period[0].name;
 }
 
+async function getSubjectById(id: number) {
+    const subject = await getRepository(Subject).find({
+        where: {
+            id
+        }
+    });
+
+    return subject[0];
+}
+
+
 export {
     getSubjectIdByName,
-    getPeriodFromId
+    getPeriodFromId,
+    getSubjectById
 }
