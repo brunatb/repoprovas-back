@@ -19,11 +19,14 @@ async function getProfessorById(id: string) {
 }
 
 async function getIdProfessorByName(name: string) {
+    console.log(name)
     const professor = await getRepository(Professor).find({
         where: {
             name
         }
     });
+
+    console.log(professor);
 
     return professor[0].id;
 }

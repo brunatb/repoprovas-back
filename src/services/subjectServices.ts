@@ -1,4 +1,5 @@
 import { getRepository } from "typeorm";
+import Period from "../entities/Period";
 import Subject from "../entities/Subject";
 
 async function getSubjectIdByName(name: string) {

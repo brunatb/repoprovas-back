@@ -15,5 +15,5 @@ export default class Subject {
     period: Period;
 
     @OneToMany(() => Test, test => test.subject)
-    test: Test;
+    test: Test[];
 }
