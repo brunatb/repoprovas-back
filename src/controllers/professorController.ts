@@ -12,6 +12,19 @@ async function getAllProfessors(req: Request, res: Response) {
     }
 }
 
+
+async function getProfessor (req: Request, res: Response) {
+  try {
+    const teacher = await professorService.getProfessorById(req.params.id);  
+    console.log(teacher);
+    res.send(teacher);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+}
+
 export {
     getAllProfessors,
+    getProfessor,
 }
