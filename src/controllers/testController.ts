@@ -24,9 +24,19 @@ async function storeTest(req:  Request, res: Response) {
 
 async function getTestProfessor(req:  Request, res: Response) {
   try {
-    const teacher = await testService.getTestByProfessorId(req.params.id);
-    console.log(teacher);
-    res.send(teacher);
+    const resul = await testService.getTestByProfessorId(req.params.id);
+    res.send(resul);
+  }catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+}
+
+async function getTestSubject(req:  Request, res: Response) {
+  try {
+    const resul = await testService.getTestBySubjectId(req.params.id);
+    console.log(resul);
+    res.send(resul);
   }catch (err) {
     console.error(err);
     res.sendStatus(500);
@@ -35,5 +45,6 @@ async function getTestProfessor(req:  Request, res: Response) {
 
 export {
     storeTest,
-    getTestProfessor
+    getTestProfessor,
+    getTestSubject
 }

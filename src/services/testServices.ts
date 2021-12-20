@@ -35,7 +35,32 @@ async function getTestByProfessorId(id: string) {
   return datas;
 }
 
+async function getTestBySubjectId(id: string) {
+  let datas : any =[];
+  const subject = await subjectService.getSubjectById(Number(id));
+  const tests = await getRepository(Test).find({
+      relations: ['subject'],
+      where: { subject: { id: Number(id)} },
+  });
+  
+  for(let i=0; i<tests.length; i++){
+    const professor = await professorService.getProfessorById(tests[i].professor.id);
+    const category = await categoryService.getCategoryById(tests[i].category.id);
+    let data = {
+      name:tests[i].name,
+      link:tests[i].pdfLink,  
+      subject:subject.name,
+      category:category.name,
+      professor:professor.name,
+    };
+    datas.push(data);
+  }
+
+  return datas;
+}
+
 export {
     createTest,
     getTestByProfessorId,
+    getTestBySubjectId
 }
