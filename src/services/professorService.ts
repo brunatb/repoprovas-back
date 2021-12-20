@@ -1,11 +1,15 @@
 import { getRepository } from "typeorm";
 import Professor from "../entities/Professor";
+import * as testService from "../services/testServices";
 
-async function getAllProfessorsSubjects() {
+async function getAllProfessors() {
     const ids = await getRepository(Professor).find({});
-
-    console.log(ids);
-    return ids;
+    let data = [];
+    for(let i=0; i<ids.length; i++){
+        const qtd = await testService.getLengthProfessorIdTests(ids[i].id);
+        data.push({id: ids[i].id, name: ids[i].name, qtd: qtd});
+    }
+    return data;
 }
 
 async function getProfessorById(id: number) {
@@ -14,25 +18,20 @@ async function getProfessorById(id: number) {
             id
         }
     });
-
     return professor[0];
 }
 
 async function getIdProfessorByName(name: string) {
-    console.log(name)
     const professor = await getRepository(Professor).find({
         where: {
             name
         }
     });
-
-    console.log(professor);
-
     return professor[0].id;
 }
 
 export {
-    getAllProfessorsSubjects,
+    getAllProfessors,
     getProfessorById,
     getIdProfessorByName
 }

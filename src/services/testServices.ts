@@ -59,8 +59,30 @@ async function getTestBySubjectId(id: string) {
   return datas;
 }
 
+async function getLengthProfessorIdTests (id: number){
+  const resul = await getRepository(Test).find({
+    relations: ['professor'],
+    where: {
+      professor: { id } 
+  }
+  });
+  return resul.length;
+}
+
+async function getLengthSubjectIdTests (id: number){
+  const resul = await getRepository(Test).find({
+    relations: ['subject'],
+    where: {
+      subject: { id } 
+  }
+  });
+  return resul.length;
+}
+
 export {
     createTest,
     getTestByProfessorId,
-    getTestBySubjectId
+    getTestBySubjectId,
+    getLengthProfessorIdTests,
+    getLengthSubjectIdTests
 }
