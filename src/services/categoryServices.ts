@@ -27,8 +27,14 @@ async function getAllPeriods() {
     return periods;
 }
 
+async function getAllCategories() {
+    const categories = await getRepository(Category).find({});
+    return categories;
+}
+
 export {
     getIdCategoryByName,
     getAllPeriods,
-    getCategoryById
+    getCategoryById,
+    getAllCategories
 }

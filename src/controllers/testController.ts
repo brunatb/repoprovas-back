@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
 import Test from "../entities/Test";
-import { test_create } from "../protocols/testProtocol";
-import * as categoryService from "../services/categoryServices";
-import * as professorService from "../services/professorService";
-import * as subjectService from "../services/subjectServices";
 import * as testService from "../services/testServices";
 
 async function storeTest(req:  Request, res: Response) {
