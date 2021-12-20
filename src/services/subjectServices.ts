@@ -11,11 +11,16 @@ async function getSubjectIdByName(name: string) {
     return id[0].id;
 }
 
-async function getAllSubjects() {
-
+async function getPeriodFromId(id:number){
+    const period = await getRepository(Period).find({
+        where: {
+            id
+        }
+    });
+    return period[0].name;
 }
 
 export {
     getSubjectIdByName,
-    getAllSubjects
+    getPeriodFromId
 }
